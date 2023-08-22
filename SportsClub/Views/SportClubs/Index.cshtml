@@ -1,0 +1,77 @@
+﻿@model SportsClub.Models.ViewModels.SportClubViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Sports Club Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Fee
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SportClubs)
+        {
+            string selectedRow = "";
+            @*            if (item.Id == Convert.ToInt32(ViewData["ClubID"]?.ToString()))
+        *@
+            if (item.Id == (ViewData["ClubID"]?.ToString()))
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fee)
+                </td>
+                <td>
+                    <a asp-action="Index" asp-route-id="@item.Id">Select</a> |
+                    <a asp-controller="News" asp-action="Index" asp-route-id="@item.Id">News</a> |
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.Fans != null)
+{
+    <h3>
+        Fans of the Sports Club:
+    </h3>
+    <table class="table">
+        <tr>
+            @if (Model.Fans.Count() > 0)
+            {
+                <th> Full Name </th>
+            }
+            else
+            {
+                <th> No fan record exists. </th>
+            }
+        </tr>
+        @foreach (var item in Model.Fans)
+        {
+            <tr>
+                <td>
+                    @item.FullName
+                </td>
+            </tr>
+        }
+    </table>
+}

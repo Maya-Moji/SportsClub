@@ -1,0 +1,47 @@
+﻿@model SportsClub.Models.ViewModels.NewsViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Show News for @TempData["SportsClubTitle"] </h1>
+<div>
+    <a href="~/SportClubs/Index" class="action-icons">
+        <span title="back">
+            <img src="~/css/arrow_back_FILL0_wght400_GRAD0_opsz48.svg" title="Back to Sports Club List" name="back" width="25">
+            <a asp-controller="SportClubs" asp-action="Index">Back to Sports Club List</a>
+        </span>
+    </a>
+</div>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table" encrypt="multipart/form-data">
+    <thead>
+        <tr>
+            <th>
+                File Name
+            </th>
+            <th>
+                URL
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.News) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                    <img src="@item.Url" style="max-width: 400px;" />
+@*                @Html.DisplayFor(modelItem => item.Url)*@
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.NewsId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

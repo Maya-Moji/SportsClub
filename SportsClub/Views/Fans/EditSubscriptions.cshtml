@@ -1,0 +1,56 @@
+﻿@model SportsClub.Models.ViewModels.FanSubscriptionViewModel
+@{
+    ViewData["Title"] = "EditSubscriptions";
+}
+
+<h1>Edit Subscriptions</h1>
+<h3>Fan</h3>
+<br/>
+<table style="width:50%;color:grey;font-style:italic;">
+
+
+            <tr class="row">
+                <td>
+                    <strong>
+                        Full Name:
+                    </strong>
+                    &nbsp;&nbsp;
+                </td>
+                <td>
+                    @ViewData["FanName"].ToString()
+                </td>
+            </tr>
+</table>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            Membership Type
+        </th>
+        <th>
+            Register/Unregister
+        </th>
+    </tr>
+    @foreach (var item in Model.Subscriptions)
+    {
+        <tr>
+            <td>
+                @item.Title
+            </td>
+            <td>
+                @if (item.IsMember)
+                {
+                    <a asp-action="RemoveSubscriptions" asp-route-sportClubId="@item.SportClubId" asp-route-fanId="@ViewData["FanID"]">Unregister</a>
+                }
+                else
+                {
+                    <a asp-action="AddSubscriptions" asp-route-sportClubId="@item.SportClubId" asp-route-fanId="@ViewData["FanID"]">Register</a>
+                }
+            </td>
+        </tr>
+    }
+</table>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
