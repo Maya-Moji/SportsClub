@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Error";
+}
+
+<p>
+    <strong class="text-danger">
+        @TempData["errorMsg"]
+    </strong>
+</p>
+
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">An error occurred while processing your request.</h2>
+
+<p>
+    <strong>Development</strong> environment will display more detailed information about this error. To switch to <strong>Development</strong> environment, 
+    set the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>
+    in launchSetting.json file and restartthe app.
+</p>
