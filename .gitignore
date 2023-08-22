@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/*
+/SportsClub/bin/*
+/SportsClub/obj
+/SportsClub/Properties
+/SportsClub/appsettings.json
+/SportsClub/appsettings.Development.json
+
